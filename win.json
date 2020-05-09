@@ -1,0 +1,57 @@
+{
+  "name": "bootstraptemplate",
+  "version": "1.0.0",
+  "description": "bootstrap starter template",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benappiahpoku/bootstraptemplate.git"
+  },
+  "keywords": [
+    "starter",
+    "template"
+  ],
+  "author": "Benjamin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Benappiahpoku/bootstraptemplate/issues"
+  },
+  "homepage": "https://github.com/Benappiahpoku/bootstraptemplate#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "copyfiles": "^2.2.0",
+    "imagemin-cli": "^5.1.0",
+    "jquery": "^3.5.0",
+    "onchange": "^7.0.2",
+    "popper.js": "^1.16.1",
+    "tether": "^1.4.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.6",
+    "clean-css-cli": "^4.3.0",
+    "cssnano": "^4.1.10",
+    "node-sass": "^4.14.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "builds": "./build.sh",
+    "compile": "node-sass --output-style expanded --source-map=true  -o assets/css assets/scss",
+    "imagemin": "imagemin assets/img/* --out-dir dist/img",
+    "move:js": "@powershell copy \"assets/js/*.min.js\" \"dist/js\"",
+    "move:css": "@powershell copy \"assets/css/* \" \"dist/css\"",
+    "move:style": "@powershell copy \"assets/css/style.css\" \"dist/css\"",
+    "build": "npm run compile && npm run move:css && npm run move:js && npm run imagemin",
+    "compile_move": "npm run compile && npm run move:style",
+    "watch:css": "onchange \"assets/scss/*.scss\" -- npm run compile_move ",
+    "watch:images": "onchange \"assets/img/*\" -- npm run imagemin",
+    "watch": "npm-run-all --parallel watch:**",
+    "prefix": "postcss assets/css/style.css --use=autoprefixer --map=false --output=assets/css/style.css",
+    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output assets/css/style.min.css assets/css/style.css",
+    "prod": "npm run build && npm run prefix && npm run minify && npm run move:style "
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
