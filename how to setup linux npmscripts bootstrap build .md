@@ -111,6 +111,11 @@
   - minify  ==> cleancss --level=1 --source-map --source-map-inline-sources --output assets/css/style.min.css assets/css/style.css
   - 
   -  
+# how to install and use browser-sync?
+  - sudo npm install -g --unsafe-perm browser-sync
+  - browser-sync start --server --files . checks the index.html for changes
+  - move index.html to main folder and sync from there
+
 
 # what is the current build process?
   - we compile style.scss to style.css in assets
